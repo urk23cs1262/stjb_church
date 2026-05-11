@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 import * as htmlToImage from 'html-to-image';
 import downloadjs from 'downloadjs';
 import PageHero from '../../components/common/PageHero';
+import api from '../../services/api';
 
 // ── Static fallback verses ────────────────────────────────────────────────────
 const BIBLE_VERSES = [
@@ -83,10 +84,9 @@ export default function BibleVerse() {
     setError(null);
     setReading(null);
     try {
-      const res = await fetch(`/api/daily-reading?date=${d}&lang=${lang}`);
-      const json = await res.json();
-      if (json.success) setReading(json.data);
-      else setError(json.message || 'Failed to load reading');
+      const res = await api.get(`/daily-reading?date=${d}&lang=${lang}`);
+      if (res.data.success) setReading(res.data.data);
+      else setError(res.data.message || 'Failed to load reading');
     } catch {
       setError('Unable to connect to server');
     } finally {

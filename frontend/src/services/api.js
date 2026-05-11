@@ -1,7 +1,10 @@
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_BASE_URL ? `${import.meta.env.VITE_API_BASE_URL}/api` : '/api';
+const UPLOADS_URL = import.meta.env.VITE_API_BASE_URL ? `${import.meta.env.VITE_API_BASE_URL}/uploads` : '/uploads';
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: API_URL,
   headers: { 'Content-Type': 'application/json' },
 });
 
@@ -22,4 +25,5 @@ api.interceptors.response.use(
   }
 );
 
+export { API_URL, UPLOADS_URL };
 export default api;
