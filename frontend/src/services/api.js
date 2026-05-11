@@ -1,7 +1,10 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_BASE_URL ? `${import.meta.env.VITE_API_BASE_URL}/api` : '/api';
-const UPLOADS_URL = import.meta.env.VITE_API_BASE_URL ? `${import.meta.env.VITE_API_BASE_URL}/uploads` : '/uploads';
+const API_URL = import.meta.env.VITE_API_BASE_URL || '/api';
+
+const UPLOADS_URL = import.meta.env.VITE_API_BASE_URL
+  ? import.meta.env.VITE_API_BASE_URL.replace('/api', '') + '/uploads'
+  : '/uploads';
 
 const api = axios.create({
   baseURL: API_URL,
