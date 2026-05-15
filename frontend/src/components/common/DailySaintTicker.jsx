@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiExternalLink, FiInfo } from 'react-icons/fi';
+import { useTranslation } from 'react-i18next';
 import api from '../../services/api';
 
 export default function DailySaintTicker() {
+  const { t, i18n } = useTranslation();
   const [saint, setSaint] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
@@ -49,9 +51,9 @@ export default function DailySaintTicker() {
         <div className="max-w-7xl mx-auto px-4 flex items-center">
           <button
             onClick={() => setShowModal(true)}
-            className="flex-shrink-0 bg-church-gold text-white text-[10px] font-bold px-1 py-0.5 rounded mr-2 z-10 flex items-center gap-1 hover:bg-church-gold/90 transition-colors cursor-pointer"
+            className="flex-shrink-0 bg-church-gold text-white text-[10px] font-bold px-2 py-1 rounded mr-2 z-10 flex items-center gap-1 hover:bg-church-gold/90 transition-colors cursor-pointer uppercase tracking-wider"
           >
-            <FiInfo className="text-xs" /> SAINT OF THE DAY
+            <FiInfo className="text-xs" /> {t('home.dailySaintTitle', 'SAINT OF THE DAY')}
           </button>
 
           <div className="relative flex-1 overflow-hidden h-6">
@@ -69,7 +71,7 @@ export default function DailySaintTicker() {
                 onClick={() => setShowModal(true)}
                 className="text-white font-semibold hover:text-church-gold transition-colors flex items-center gap-2 cursor-pointer"
               >
-                ✝️ Today's Saint: <span className="font-bold">{saint.name}</span> — {saint.description.slice(0, 80)}... <span className="text-church-gold italic text-sm">(Click for details →)</span>
+                ✝️ {t('home.todaysSaint', "Today's Saint")}: <span className="font-bold">{saint.name}</span> — {saint.description.slice(0, 80)}... <span className="text-church-gold italic text-sm">({t('common.clickForDetails', 'Click for details')} →)</span>
               </button>
             </motion.div>
           </div>
@@ -109,6 +111,9 @@ export default function DailySaintTicker() {
                       shadow-[0_20px_80px_rgba(0,0,0,0.5)]
                       overflow-hidden
                       max-h-[90vh]
+                      md:max-h-[90vh]
+                      md:h-[400px]
+                      flex flex-col
                     "
                   >
                     {/* CLOSE */}
@@ -134,10 +139,10 @@ export default function DailySaintTicker() {
                       <FiX className="text-2xl text-gray-700" />
                     </button>
 
-                    <div className="flex flex-col md:flex-row h-full overflow-hidden">
+                    <div className="flex flex-col md:flex-row flex-1 overflow-y-auto md:overflow-hidden">
                       {/* IMAGE */}
                       {saint.image && (
-                        <div className="md:w-1/2 relative min-h-[300px] md:min-h-full flex-shrink-0">
+                        <div className="w-full md:w-1/2 relative h-[250px] sm:h-[300px] md:h-full flex-shrink-0">
                           <img
                             src={saint.image}
                             alt={saint.name}
@@ -148,7 +153,7 @@ export default function DailySaintTicker() {
 
                           <div className="absolute bottom-8 left-8 text-white">
                             <p className="text-church-gold uppercase tracking-[0.35em] text-sm mb-3">
-                              Saint of the Day
+                              {t('home.dailySaintTitle', 'Saint of the Day')}
                             </p>
 
                             <h2 className="text-4xl md:text-5xl font-bold font-display leading-tight">
@@ -159,14 +164,14 @@ export default function DailySaintTicker() {
                       )}
 
                       {/* CONTENT */}
-                      <div className="flex-1 p-6 md:p-10 overflow-y-auto">
+                      <div className="flex-1 p-6 md:p-10 overflow-y-visible md:overflow-y-auto">
                         <div className="mb-6">
                           <p className="text-xs uppercase tracking-[0.3em] text-gray-400 font-bold mb-2">
-                            Feast Day
+                            {t('booking.feastDay', 'Feast Day')}
                           </p>
 
-                          <p className="text-2xl font-bold text-church-gold">
-                            {new Date().toLocaleDateString('en-GB', {
+                          <p className="text-2xl font-bold text-church-gold capitalize">
+                            {new Date().toLocaleDateString(i18n.language === 'ta' ? 'ta-IN' : 'en-GB', {
                               weekday: 'long',
                               day: 'numeric',
                               month: 'long',
@@ -200,7 +205,7 @@ export default function DailySaintTicker() {
                           "
                         >
                           <FiExternalLink />
-                          Read Full History
+                          {t('common.readFullHistory', 'Read Full History')}
                         </a>
                       </div>
                     </div>

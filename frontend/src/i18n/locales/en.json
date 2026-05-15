@@ -16,7 +16,7 @@
     "dashboard": "Dashboard",
     "logout": "Logout",
     "admin": "Admin Panel",
-    "rosary": "Holy Rosary",
+    "rosary": "Rosary",
     "calendar": "Catholic Calendar",
     "faq": "FAQ",
     "parish-council": "Parish Council"
@@ -39,7 +39,9 @@
     "members": "Parish Members",
     "years": "Years of Service",
     "masses": "Masses Per Week",
-    "volunteers": "Volunteers"
+    "volunteers": "Volunteers",
+    "dailySaintTitle": "SAINT OF THE DAY",
+    "todaysSaint": "Today's Saint"
   },
   "mass": {
     "title": "Mass Timings",
@@ -80,6 +82,7 @@
     "otpSent": "OTP sent to your phone/email"
   },
   "booking": {
+    "feastDay": "Feast Day",
     "title": "Book a Holy Mass",
     "date": "Select Date",
     "time": "Mass Time",
@@ -176,7 +179,9 @@
     "seeAll": "See All",
     "darkMode": "Dark Mode",
     "lightMode": "Light Mode",
-    "language": "Language"
+    "language": "Language",
+    "clickForDetails": "Click for details",
+    "readFullHistory": "Read Full History"
   },
   "footer": {
     "churchName": "St. John de Britto's Church",
