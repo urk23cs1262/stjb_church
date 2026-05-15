@@ -9,7 +9,7 @@ import {
   FiSettings, FiBell, FiGlobe, FiVolume2, FiVolumeX, FiMusic, FiHeadphones
 } from 'react-icons/fi';
 import { GiChurch, GiCrucifix } from 'react-icons/gi';
-import churchLogo from '../../assets/image copy 2.png';
+import churchLogo from '../../assets/image copy.png';
 import rosaryAudio from '../../assets/rosary.mp3';
 import DailySaintTicker from './DailySaintTicker';
 import RosaryModal from './RosaryModal';
